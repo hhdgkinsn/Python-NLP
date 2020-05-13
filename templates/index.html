@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block pagecontent %}
+
+   <div>
+       {% if join_sentences is not none and join_sentences|length > 0 %}
+       <h3>Instances of the word <span class="q_word">{{ query_word }}</span> in {{ book }}</h3>
+
+            {% for line in join_sentences %}
+                {% for word in line.split(" ") %}
+                    {% if word == query_word or word == query_word.upper() or word == query_word.capitalize() %}
+                        <p class="q_word">{{ word }}</p>
+                    {% else %}
+                        <p>{{ word }}</p>
+                    {% endif %}
+                {% endfor %}
+            <br><br>
+            
+            {% endfor %}
+        {% else %}
+            <p>No Word Matches</p>
+        {% endif %}
+    </div>
+  
+{% endblock pagecontent %}
+
